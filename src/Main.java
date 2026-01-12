@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.io.IOException;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -37,6 +40,9 @@ public class Main {
                 case 6:
                     toonAlleInformatie();
                     break;
+                case 7:
+                    drukBoardingLijstAf();
+                    break;
                 case 0:
                     System.out.println("Programma wordt afgesloten...");
                     running = false;
@@ -56,6 +62,7 @@ public class Main {
         System.out.println("4. Personeel beheer");
         System.out.println("5. Ticket beheer");
         System.out.println("6. Toon alle informatie");
+        System.out.println("7. Boarding lijst afdrukken (txt)");
         System.out.println("0. Afsluiten");
         System.out.print("Kies een optie: ");
     }
@@ -460,6 +467,98 @@ public class Main {
         toonAlleReizigers();
         toonAllePersoneel();
         toonAlleTickets();
+    }
+
+    // ========== BOARDING LIJST ==========
+    private static void drukBoardingLijstAf() {
+        if (treinen.isEmpty()) {
+            System.out.println("Geen treinen beschikbaar.");
+            return;
+        }
+
+        toonAlleTreinen();
+        System.out.print("Kies trein nummer voor boarding lijst: ");
+        int treinIndex = leesInt() - 1;
+
+        if (treinIndex < 0 || treinIndex >= treinen.size()) {
+            System.out.println("Ongeldige treinnummer.");
+            return;
+        }
+
+        Trein trein = treinen.get(treinIndex);
+
+        System.out.print("Bestandsnaam (bijv. boarding_lijst.txt): ");
+        String bestandsnaam = scanner.nextLine();
+
+        try (PrintWriter writer = new PrintWriter(new FileWriter(bestandsnaam))) {
+            // Header
+            writer.println("═══════════════════════════════════════════════════════");
+            writer.println("              BOARDING LIJST - PASSAGIERS              ");
+            writer.println("═══════════════════════════════════════════════════════");
+            writer.println();
+
+            // Trein informatie
+            writer.println("TREIN INFORMATIE:");
+            writer.println("─────────────────────────────────────────────────────");
+            writer.println("Locomotief: " + trein.getLocomotief().getTypeMotor());
+            writer.println("Aantal wagons: " + trein.getWagons().size());
+            writer.println();
+
+            // Wagon details
+            writer.println("WAGONS:");
+            for (int i = 0; i < trein.getWagons().size(); i++) {
+                Wagon w = trein.getWagons().get(i);
+                writer.println("  Wagon " + (i + 1) + ": " + w.getTypeKlasse() +
+                        " (Capaciteit: " + w.getCapaciteit() + ")");
+            }
+            writer.println();
+
+            // Reis informatie
+            if (trein.getReis() != null) {
+                Reis reis = trein.getReis();
+                writer.println("REIS INFORMATIE:");
+                writer.println("─────────────────────────────────────────────────────");
+                writer.println("Van: " + reis.getVertrekStation());
+                writer.println("Naar: " + reis.getAankomstStation());
+                writer.println("Vertrek: " + reis.getVertrekTijd());
+                writer.println("Aankomst: " + reis.getAankomstTijd());
+                writer.println();
+            }
+
+            // Passagiers lijst
+            writer.println("PASSAGIERS:");
+            writer.println("─────────────────────────────────────────────────────");
+
+            if (trein.getReizigers().isEmpty()) {
+                writer.println("Geen passagiers aan boord.");
+            } else {
+                writer.println(String.format("%-5s %-20s %-20s %-15s %-10s",
+                        "Nr.", "Voornaam", "Familienaam", "Ticket Nr.", "Prijs"));
+                writer.println("─────────────────────────────────────────────────────");
+
+                int nr = 1;
+                for (Reiziger r : trein.getReizigers()) {
+                    String ticketNr = (r.getTicket() != null) ? r.getTicket().getTicketNummer() : "N/A";
+                    String prijs = (r.getTicket() != null) ? "€" + r.getTicket().getPrijs() : "N/A";
+
+                    writer.println(String.format("%-5d %-20s %-20s %-15s %-10s",
+                            nr, r.getNaam(), r.getFamilienaam(), ticketNr, prijs));
+                    nr++;
+                }
+                writer.println();
+                writer.println("Totaal aantal passagiers: " + trein.getReizigers().size());
+            }
+
+            writer.println();
+            writer.println("═══════════════════════════════════════════════════════");
+            writer.println("         Gegenereerd door Treinmanagementsysteem       ");
+            writer.println("═══════════════════════════════════════════════════════");
+
+            System.out.println("\nBoarding lijst succesvol opgeslagen in: " + bestandsnaam);
+
+        } catch (IOException e) {
+            System.out.println("Fout bij het schrijven naar bestand: " + e.getMessage());
+        }
     }
 
     // ========== HULPMETHODES ==========
