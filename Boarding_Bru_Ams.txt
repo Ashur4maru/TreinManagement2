@@ -1,0 +1,24 @@
+═══════════════════════════════════════════════════════
+              BOARDING LIJST - PASSAGIERS              
+═══════════════════════════════════════════════════════
+
+TREIN INFORMATIE:
+─────────────────────────────────────────────────────
+Locomotief: diesel
+Aantal wagons: 2
+
+WAGONS:
+  Wagon 1: BUSINESS (Capaciteit: 12)
+  Wagon 2: ECONOMIE (Capaciteit: 25)
+
+PASSAGIERS:
+─────────────────────────────────────────────────────
+Nr.   Voornaam             Familienaam          Ticket Nr.      Prijs     
+─────────────────────────────────────────────────────
+1     rakim                ben                  1               €15.0     
+
+Totaal aantal passagiers: 1
+
+═══════════════════════════════════════════════════════
+         Gegenereerd door Treinmanagementsysteem       
+═══════════════════════════════════════════════════════
