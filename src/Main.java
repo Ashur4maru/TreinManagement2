@@ -6,6 +6,9 @@ import java.io.PrintWriter;
 import java.io.IOException;
 
 /**
+ * @author Rakim Benkirane
+ * @version 2.0
+ *
  * Hoofdklasse voor het Treinmanagementsysteem.
  * Deze klasse fungeert als de controller die gebruikersinvoer verwerkt
  * en de interactie tussen treinen, reizen, reizigers en personeel beheert.
@@ -109,7 +112,7 @@ public class Main {
 
 
     /**
-     * Maakt een nieuw trein aan en voegt het toe aan de lijst met treinen
+     * Maakt een nieuwe trein aan en voegt het toe aan de lijst met treinen
      */
     private static void maakNieuweTrein() {
         System.out.print("Type motor (bijv. Elektrisch, Diesel): ");
