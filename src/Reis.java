@@ -1,13 +1,26 @@
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Representeert een specifieke treinreis tussen twee stations.
+ * Deze klasse houdt de trajectgegevens bij en beheert de koppelingen
+ * met de ingezette trein en de verkochte tickets.
+ */
+
 public class Reis {
 
     private String vertrekStation;
     private String aankomstStation;
     private String vertrekTijd;
     private String aankomstTijd;
+
+    /**
+     * De specifieke trein die voor deze reis wordt gebruikt.
+     */
     private Trein trein;
+    /**
+     * Een lijst van alle tickets die voor deze reis zijn verkocht.
+     */
     private List<Ticket> tickets;
 
     public Reis(String vertrekStation, String aankomstStation, String vertrekTijd, String aankomstTijd) {
@@ -50,10 +63,17 @@ public class Reis {
         this.aankomstTijd = aankomstTijd;
     }
 
+    /**
+     * Haalt de treinen die aan deze reis zijn gekoppeld
+     */
     public Trein getTrein() {
         return trein;
     }
 
+    /**
+     * Koppelt een trein aan deze reis.
+     * @param trein de trein die de reis doet
+     */
     public void setTrein(Trein trein) {
         this.trein = trein;
         if (trein != null && trein.getReis() != this) {
@@ -61,6 +81,9 @@ public class Reis {
         }
     }
 
+    /**
+     * Geeft de lijst met de verkochte tickets terug
+     */
     public List<Ticket> getTickets() {
         return tickets;
     }

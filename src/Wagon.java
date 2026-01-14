@@ -1,3 +1,8 @@
+/**
+ * Deze klasse bevat de gegevens van een wagon.
+ *
+ */
+
 public class Wagon {
 
     private TypeKlasse typeKlasse;

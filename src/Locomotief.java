@@ -1,3 +1,7 @@
+/**
+ * Deze klasse bevat de gegevens van een locomotief.
+ */
+
 public class Locomotief {
 
     private String typeMotor;

@@ -1,6 +1,10 @@
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * De klasse Trein representeert een trein die bestaat uit een locomotief, meerdere wagons,
+ * een lijst van personeelsleden en reizigers, en een mogelijke toegewezen reis.
+ */
 public class Trein {
 
     private Locomotief locomotief;
@@ -20,9 +24,7 @@ public class Trein {
         return locomotief;
     }
 
-    public void setLocomotief(Locomotief locomotief) {
-        this.locomotief = locomotief;
-    }
+
 
     public List<Wagon> getWagons() {
         return wagons;
@@ -32,9 +34,7 @@ public class Trein {
         wagons.add(wagon);
     }
 
-    public void verwijderWagon(Wagon wagon) {
-        wagons.remove(wagon);
-    }
+
 
     public List<Personeel> getPersoneelsleden() {
         return personeelsleden;
@@ -49,9 +49,7 @@ public class Trein {
         }
     }
 
-    public void verwijderPersoneel(Personeel personeel) {
-        personeelsleden.remove(personeel);
-    }
+
 
     public List<Reiziger> getReizigers() {
         return reizigers;
@@ -66,9 +64,7 @@ public class Trein {
         }
     }
 
-    public void verwijderReiziger(Reiziger reiziger) {
-        reizigers.remove(reiziger);
-    }
+
 
     public Reis getReis() {
         return reis;

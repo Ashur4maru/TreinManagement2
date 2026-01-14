@@ -1,3 +1,10 @@
+/**
+ * Deze klasse representeert personeelsleden die op het trein werken.
+ * Het extends de classe Persoon om de basisgegevens van een persoon op te slaan.
+ *
+ * Deze klasse heeft speciefike attributen die ze onderscheiden van een reiziger, zoals functie en certificaat.
+ */
+
 public class Personeel extends Persoon{
 
     private String functie;

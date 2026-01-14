@@ -1,5 +1,9 @@
 import java.time.LocalDate;
 
+/**
+ * Deze klasse bevat de gegevens van een persoon.
+ * Die later gaat gebruikt zijn als extends voor de klasse Personeel en Reiziger.
+ */
 public class Persoon {
 
     private String naam;

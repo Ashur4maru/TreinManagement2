@@ -5,9 +5,15 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.io.IOException;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+/**
+ * Hoofdklasse voor het Treinmanagementsysteem.
+ * Deze klasse fungeert als de controller die gebruikersinvoer verwerkt
+ * en de interactie tussen treinen, reizen, reizigers en personeel beheert.
+ */
+
 public class Main {
+
+    //statische lijsten die als tijdelijke database werken
     private static List<Trein> treinen = new ArrayList<>();
     private static List<Reis> reizen = new ArrayList<>();
     private static List<Reiziger> reizigers = new ArrayList<>();
@@ -17,6 +23,7 @@ public class Main {
     public static void main(String[] args) {
         boolean running = true;
 
+        //Hoofdloop van de applicatie
         while (running) {
             toonHoofdMenu();
             int keuze = leesInt();
@@ -54,6 +61,11 @@ public class Main {
         scanner.close();
     }
 
+
+    /**
+     *Toont de hoofdmenu in de console
+     *
+     */
     private static void toonHoofdMenu() {
         System.out.println("\n========== TREINMANAGEMENTSYSTEEM ==========");
         System.out.println("1. Trein beheer");
@@ -68,6 +80,10 @@ public class Main {
     }
 
     // ========== TREIN MENU ==========
+
+    /**
+     * Toont de trein menu in de console
+     */
     private static void treinMenu() {
         System.out.println("\n--- TREIN BEHEER ---");
         System.out.println("1. Nieuwe trein aanmaken");
@@ -91,10 +107,16 @@ public class Main {
         }
     }
 
+
+    /**
+     * Maakt een nieuw trein aan en voegt het toe aan de lijst met treinen
+     */
     private static void maakNieuweTrein() {
         System.out.print("Type motor (bijv. Elektrisch, Diesel): ");
         String typeMotor = scanner.nextLine();
 
+
+        //Object-georienteerd opbouw: een trein heeft een locomotief nodige
         Locomotief loc = new Locomotief(typeMotor);
         Trein trein = new Trein(loc);
         treinen.add(trein);
@@ -122,6 +144,9 @@ public class Main {
         }
     }
 
+    /**
+     * Voegt een wagon toe aan een trein
+     */
     private static void voegWagonToe() {
         if (treinen.isEmpty()) {
             System.out.println("Geen treinen beschikbaar. Maak eerst een trein aan.");
@@ -204,6 +229,10 @@ public class Main {
         System.out.println("Reis succesvol aangemaakt! (Reis #" + reizen.size() + ")");
     }
 
+
+    /**
+     * Koppelt een trein aan een reis.
+     */
     private static void koppelTreinAanReis() {
         if (treinen.isEmpty() || reizen.isEmpty()) {
             System.out.println("Zorg dat er treinen en reizen beschikbaar zijn.");
@@ -470,6 +499,11 @@ public class Main {
     }
 
     // ========== BOARDING LIJST ==========
+
+    /**
+     * Exporteert alle relevante informatie van een geselecteerde trein naar een tekstbestand.
+     * Inclusief locomotief-details, wagon-indeling en passagierslijst.
+     */
     private static void drukBoardingLijstAf() {
         if (treinen.isEmpty()) {
             System.out.println("Geen treinen beschikbaar.");
@@ -490,6 +524,8 @@ public class Main {
         System.out.print("Bestandsnaam (bijv. boarding_lijst.txt): ");
         String bestandsnaam = scanner.nextLine();
 
+
+        // Try-with-resources blok zorgt voor automatische sluiting van de writer
         try (PrintWriter writer = new PrintWriter(new FileWriter(bestandsnaam))) {
             // Header
             writer.println("═══════════════════════════════════════════════════════");
@@ -562,6 +598,12 @@ public class Main {
     }
 
     // ========== HULPMETHODES ==========
+
+    /**
+     * Leest een integer in en vangt foutieve invoer (zoals letters) af.
+     * Voorkomt de bekende Scanner 'skipping' bug door nextLine() aan te roepen.
+     * @return Een geldig ingevoerd getal.
+     */
     private static int leesInt() {
         while (!scanner.hasNextInt()) {
             System.out.print("Voer een geldig nummer in: ");
@@ -571,4 +613,6 @@ public class Main {
         scanner.nextLine();
         return input;
     }
+
+    //De overige methode(reisMenu, reizigerMenu, personeelMenu, ticketMenu, toonAlleInformatie,....) volgen altijd dezelfde patroon.
 }

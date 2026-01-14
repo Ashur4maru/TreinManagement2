@@ -1,8 +1,24 @@
+/**
+ * De klasse Ticket vertegenwoordigt een vervoersbewijs dat wordt gekoppeld aan een reiziger en een specifieke reis.
+ * Het bevat informatie zoals het ticketnummer en de prijs.
+ */
+
 public class Ticket {
 
     private String ticketNummer;
     private double prijs;
+
+    /**
+     * Verwijzing naar een Reiziger die gekoppeld is aan dit ticket.
+     * Een Reiziger vertegenwoordigt de persoon die gebruikmaakt van het ticket.
+     */
     private Reiziger reiziger;
+    /**
+     * Verwijzing naar een specifieke reis waaraan het ticket gekoppeld is.
+     * Een Reis vertegenwoordigt een treinreis tussen twee stations, inclusief
+     * gegevens over vertrek- en aankomststations, tijden, en de lijst met
+     * gekoppelde tickets.
+     */
     private Reis reis;
 
     public Ticket(String ticketNummer, double prijs) {
