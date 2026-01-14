@@ -1,3 +1,7 @@
+package Trein;
+
+import Persoon.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -103,7 +107,7 @@ public class Reis {
 
     @Override
     public String toString() {
-        return "Reis van " + vertrekStation + " naar " + aankomstStation +
+        return "Trein.Reis van " + vertrekStation + " naar " + aankomstStation +
                 " (" + vertrekTijd + " - " + aankomstTijd + ")";
     }
 }

@@ -1,8 +1,13 @@
+package Trein;
+
+import Persoon.Personeel;
+import Persoon.Reiziger;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * De klasse Trein representeert een trein die bestaat uit een locomotief, meerdere wagons,
+ * De klasse Trein.Trein representeert een trein die bestaat uit een locomotief, meerdere wagons,
  * een lijst van personeelsleden en reizigers, en een mogelijke toegewezen reis.
  */
 public class Trein {
@@ -79,7 +84,7 @@ public class Trein {
 
     @Override
     public String toString() {
-        return "Trein met " + locomotief + ", " + wagons.size() + " wagons, " +
+        return "Trein.Trein met " + locomotief + ", " + wagons.size() + " wagons, " +
                 personeelsleden.size() + " personeelsleden, " + reizigers.size() + " reizigers";
     }
 }

@@ -1,10 +1,14 @@
+package Persoon;
+
+import Trein.Trein;
+
 /**
  * Deze klasse bevat de gegevens van een reiziger.
- * Het extends de klasse Persoon om de basisgegevens van een persoon op te slaan.
+ * Het extends de klasse Persoon.Persoon om de basisgegevens van een persoon op te slaan.
  * En wordt onderscheiden van een personeelleden door het hebben van een ticket.
  */
 
-public class Reiziger extends Persoon{
+public class Reiziger extends Persoon {
 
     private Ticket ticket;
     private Trein trein;
@@ -37,6 +41,6 @@ public class Reiziger extends Persoon{
 
     @Override
     public String toString() {
-        return "Reiziger: " + super.toString();
+        return "Persoon.Reiziger: " + super.toString();
     }
 }

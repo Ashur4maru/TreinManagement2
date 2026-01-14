@@ -1,11 +1,15 @@
+package Persoon;
+
+import Trein.Trein;
+
 /**
  * Deze klasse representeert personeelsleden die op het trein werken.
- * Het extends de classe Persoon om de basisgegevens van een persoon op te slaan.
+ * Het extends de classe Persoon.Persoon om de basisgegevens van een persoon op te slaan.
  *
  * Deze klasse heeft speciefike attributen die ze onderscheiden van een reiziger, zoals functie en certificaat.
  */
 
-public class Personeel extends Persoon{
+public class Personeel extends Persoon {
 
     private String functie;
     private String certificaat;
@@ -46,6 +50,6 @@ public class Personeel extends Persoon{
 
     @Override
     public String toString() {
-        return "Personeel: " + super.toString() + " (" + functie + ", " + certificaat + ")";
+        return "Persoon.Persoon.Personeel: " + super.toString() + " (" + functie + ", " + certificaat + ")";
     }
 }

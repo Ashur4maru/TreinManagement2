@@ -5,6 +5,9 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.io.IOException;
 
+import Persoon.*;
+import Trein.*;
+
 /**
  * @author Rakim Benkirane
  * @version 2.0
@@ -71,11 +74,11 @@ public class Main {
      */
     private static void toonHoofdMenu() {
         System.out.println("\n========== TREINMANAGEMENTSYSTEEM ==========");
-        System.out.println("1. Trein beheer");
-        System.out.println("2. Reis beheer");
-        System.out.println("3. Reiziger beheer");
-        System.out.println("4. Personeel beheer");
-        System.out.println("5. Ticket beheer");
+        System.out.println("1. Trein.Trein beheer");
+        System.out.println("2. Trein.Reis beheer");
+        System.out.println("3. Persoon.Reiziger beheer");
+        System.out.println("4. Persoon.Persoon.Personeel beheer");
+        System.out.println("5. Persoon.Ticket beheer");
         System.out.println("6. Toon alle informatie");
         System.out.println("7. Boarding lijst afdrukken (txt)");
         System.out.println("0. Afsluiten");
@@ -90,7 +93,7 @@ public class Main {
     private static void treinMenu() {
         System.out.println("\n--- TREIN BEHEER ---");
         System.out.println("1. Nieuwe trein aanmaken");
-        System.out.println("2. Wagon toevoegen aan trein");
+        System.out.println("2. Trein.Trein.Wagon toevoegen aan trein");
         System.out.println("3. Toon alle treinen");
         System.out.println("0. Terug naar hoofdmenu");
         System.out.print("Kies een optie: ");
@@ -119,27 +122,26 @@ public class Main {
         String typeMotor = scanner.nextLine();
 
 
-        //Object-georienteerd opbouw: een trein heeft een locomotief nodige
+        //Object-georiënteerd opbouw: een trein heeft een locomotief nodige
         Locomotief loc = new Locomotief(typeMotor);
         Trein trein = new Trein(loc);
         treinen.add(trein);
 
-        System.out.println("Trein succesvol aangemaakt! (Trein #" + treinen.size() + ")");
+        System.out.println("Trein.Trein succesvol aangemaakt! (Trein.Trein #" + treinen.size() + ")");
 
         System.out.print("Wil je nu wagons toevoegen? (j/n): ");
         if (scanner.nextLine().equalsIgnoreCase("j")) {
             boolean doorgaan = true;
             while (doorgaan) {
-                System.out.print("Wagon klasse (1=BUSINESS, 2=ECONOMIE): ");
+                System.out.print("Trein.Trein.Wagon klasse (1=BUSINESS, 2=ECONOMIE): ");
                 int klasseKeuze = leesInt();
                 TypeKlasse klasse = (klasseKeuze == 1) ? TypeKlasse.BUSINESS : TypeKlasse.ECONOMIE;
 
                 System.out.print("Capaciteit: ");
                 int capaciteit = leesInt();
-
                 Wagon wagon = new Wagon(klasse, capaciteit);
                 trein.voegWagonToe(wagon);
-                System.out.println("Wagon toegevoegd!");
+                System.out.println("Trein.Trein.Wagon toegevoegd!");
 
                 System.out.print("Nog een wagon toevoegen? (j/n): ");
                 doorgaan = scanner.nextLine().equalsIgnoreCase("j");
@@ -165,7 +167,7 @@ public class Main {
             return;
         }
 
-        System.out.print("Wagon klasse (1=BUSINESS, 2=ECONOMIE): ");
+        System.out.print("Trein.Trein.Wagon klasse (1=BUSINESS, 2=ECONOMIE): ");
         int klasseKeuze = leesInt();
         TypeKlasse klasse = (klasseKeuze == 1) ? TypeKlasse.BUSINESS : TypeKlasse.ECONOMIE;
 
@@ -174,7 +176,7 @@ public class Main {
 
         Wagon wagon = new Wagon(klasse, capaciteit);
         treinen.get(treinIndex).voegWagonToe(wagon);
-        System.out.println("Wagon succesvol toegevoegd!");
+        System.out.println("Trein.Trein.Wagon succesvol toegevoegd!");
     }
 
     private static void toonAlleTreinen() {
@@ -193,7 +195,7 @@ public class Main {
     private static void reisMenu() {
         System.out.println("\n--- REIS BEHEER ---");
         System.out.println("1. Nieuwe reis aanmaken");
-        System.out.println("2. Trein koppelen aan reis");
+        System.out.println("2. Trein.Trein koppelen aan reis");
         System.out.println("3. Toon alle reizen");
         System.out.println("0. Terug naar hoofdmenu");
         System.out.print("Kies een optie: ");
@@ -229,7 +231,7 @@ public class Main {
         Reis reis = new Reis(vertrek, aankomst, vertrekTijd, aankomstTijd);
         reizen.add(reis);
 
-        System.out.println("Reis succesvol aangemaakt! (Reis #" + reizen.size() + ")");
+        System.out.println("Trein.Reis succesvol aangemaakt! (Trein.Reis #" + reizen.size() + ")");
     }
 
 
@@ -253,7 +255,7 @@ public class Main {
         if (reisIndex >= 0 && reisIndex < reizen.size() &&
                 treinIndex >= 0 && treinIndex < treinen.size()) {
             reizen.get(reisIndex).setTrein(treinen.get(treinIndex));
-            System.out.println("Trein succesvol gekoppeld aan reis!");
+            System.out.println("Trein.Trein succesvol gekoppeld aan reis!");
         } else {
             System.out.println("Ongeldige keuze.");
         }
@@ -275,7 +277,7 @@ public class Main {
     private static void reizigerMenu() {
         System.out.println("\n--- REIZIGER BEHEER ---");
         System.out.println("1. Nieuwe reiziger aanmaken");
-        System.out.println("2. Reiziger koppelen aan trein");
+        System.out.println("2. Persoon.Reiziger koppelen aan trein");
         System.out.println("3. Toon alle reizigers");
         System.out.println("0. Terug naar hoofdmenu");
         System.out.print("Kies een optie: ");
@@ -305,7 +307,7 @@ public class Main {
         Reiziger reiziger = new Reiziger(naam, familienaam);
         reizigers.add(reiziger);
 
-        System.out.println("Reiziger succesvol aangemaakt! (Reiziger #" + reizigers.size() + ")");
+        System.out.println("Persoon.Reiziger succesvol aangemaakt! (Persoon.Reiziger #" + reizigers.size() + ")");
     }
 
     private static void koppelReizigerAanTrein() {
@@ -325,7 +327,7 @@ public class Main {
         if (reizigerIndex >= 0 && reizigerIndex < reizigers.size() &&
                 treinIndex >= 0 && treinIndex < treinen.size()) {
             reizigers.get(reizigerIndex).setTrein(treinen.get(treinIndex));
-            System.out.println("Reiziger succesvol gekoppeld aan trein!");
+            System.out.println("Persoon.Reiziger succesvol gekoppeld aan trein!");
         } else {
             System.out.println("Ongeldige keuze.");
         }
@@ -383,7 +385,7 @@ public class Main {
         Personeel personeel = new Personeel(naam, familienaam, functie, certificaat);
         personeelsleden.add(personeel);
 
-        System.out.println("Personeelslid succesvol aangemaakt! (Personeel #" + personeelsleden.size() + ")");
+        System.out.println("Personeelslid succesvol aangemaakt! (Persoon.Persoon.Personeel #" + personeelsleden.size() + ")");
     }
 
     private static void koppelPersoneelAanTrein() {
@@ -468,7 +470,7 @@ public class Main {
                 reisIndex >= 0 && reisIndex < reizen.size()) {
             ticket.setReiziger(reizigers.get(reizigerIndex));
             ticket.setReis(reizen.get(reisIndex));
-            System.out.println("Ticket succesvol aangemaakt en gekoppeld!");
+            System.out.println("Persoon.Ticket succesvol aangemaakt en gekoppeld!");
         } else {
             System.out.println("Ongeldige keuze.");
         }
@@ -536,23 +538,23 @@ public class Main {
             writer.println("═══════════════════════════════════════════════════════");
             writer.println();
 
-            // Trein informatie
+            // Trein.Trein informatie
             writer.println("TREIN INFORMATIE:");
             writer.println("─────────────────────────────────────────────────────");
-            writer.println("Locomotief: " + trein.getLocomotief().getTypeMotor());
+            writer.println("Trein.Trein.Locomotief: " + trein.getLocomotief().getTypeMotor());
             writer.println("Aantal wagons: " + trein.getWagons().size());
             writer.println();
 
-            // Wagon details
+            // Trein.Trein.Wagon details
             writer.println("WAGONS:");
             for (int i = 0; i < trein.getWagons().size(); i++) {
                 Wagon w = trein.getWagons().get(i);
-                writer.println("  Wagon " + (i + 1) + ": " + w.getTypeKlasse() +
+                writer.println("  Trein.Trein.Wagon " + (i + 1) + ": " + w.getTypeKlasse() +
                         " (Capaciteit: " + w.getCapaciteit() + ")");
             }
             writer.println();
 
-            // Reis informatie
+            // Trein.Reis informatie
             if (trein.getReis() != null) {
                 Reis reis = trein.getReis();
                 writer.println("REIS INFORMATIE:");
@@ -572,7 +574,7 @@ public class Main {
                 writer.println("Geen passagiers aan boord.");
             } else {
                 writer.println(String.format("%-5s %-20s %-20s %-15s %-10s",
-                        "Nr.", "Voornaam", "Familienaam", "Ticket Nr.", "Prijs"));
+                        "Nr.", "Voornaam", "Familienaam", "Persoon.Ticket Nr.", "Prijs"));
                 writer.println("─────────────────────────────────────────────────────");
 
                 int nr = 1;

@@ -18,28 +18,28 @@ Het Treinmanagementsysteem is een console-applicatie waarmee je een compleet tre
 
 ## ✨ Functionaliteiten
 
-### 1. Trein Beheer
+### 1. Trein.Trein Beheer
 - Nieuwe treinen aanmaken met locomotief
 - Wagons toevoegen (Business of Economie klasse)
 - Overzicht van alle treinen
 
-### 2. Reis Beheer
+### 2. Trein.Reis Beheer
 - Nieuwe reizen aanmaken met vertrek- en aankomststations
 - Vertrek- en aankomsttijden instellen
 - Treinen koppelen aan reizen
 - Overzicht van alle reizen
 
-### 3. Reiziger Beheer
+### 3. Persoon.Reiziger Beheer
 - Nieuwe reizigers registreren
 - Reizigers koppelen aan treinen
 - Overzicht van alle reizigers
 
-### 4. Personeel Beheer
-- Personeel aanmaken (met functie en certificaat)
-- Personeel toewijzen aan treinen
+### 4. Persoon.Persoon.Personeel Beheer
+- Persoon.Persoon.Personeel aanmaken (met functie en certificaat)
+- Persoon.Persoon.Personeel toewijzen aan treinen
 - Overzicht van al het personeel
 
-### 5. Ticket Beheer
+### 5. Persoon.Ticket Beheer
 - Tickets uitgeven met ticketnummer en prijs
 - Tickets koppelen aan reizigers en reizen
 - Overzicht van alle tickets
@@ -80,11 +80,11 @@ Bij het starten zie je het hoofdmenu:
 
 ```
 ========== TREINMANAGEMENTSYSTEEM ==========
-1. Trein beheer
-2. Reis beheer
-3. Reiziger beheer
-4. Personeel beheer
-5. Ticket beheer
+1. Trein.Trein beheer
+2. Trein.Reis beheer
+3. Persoon.Reiziger beheer
+4. Persoon.Persoon.Personeel beheer
+5. Persoon.Ticket beheer
 6. Toon alle informatie
 7. Boarding lijst afdrukken (txt)
 0. Afsluiten
@@ -123,83 +123,83 @@ Bij het starten zie je het hoofdmenu:
 ### Overerving (Inheritance)
 
 ```
-Persoon (abstract superklasse)
-├── Reiziger
-└── Personeel
+Persoon.Persoon (abstract superklasse)
+├── Persoon.Reiziger
+└── Persoon.Persoon.Personeel
 ```
 
-**Persoon**
+**Persoon.Persoon**
 - Attributen: naam, familienaam
 - Gemeenschappelijke eigenschappen van alle mensen
 
-**Reiziger** (extends Persoon)
+**Persoon.Reiziger** (extends Persoon.Persoon)
 - Erft: naam, familienaam
-- Relaties: heeft 1 Ticket, zit op 1 Trein
+- Relaties: heeft 1 Persoon.Ticket, zit op 1 Trein.Trein
 
-**Personeel** (extends Persoon)
+**Persoon.Persoon.Personeel** (extends Persoon.Persoon)
 - Erft: naam, familienaam
 - Attributen: functie, certificaat
-- Relatie: werkt op 1 Trein
+- Relatie: werkt op 1 Trein.Trein
 
 ### Compositie (Composition)
 
-**Trein**
-- Bestaat uit: 1 Locomotief + meerdere Wagons
+**Trein.Trein**
+- Bestaat uit: 1 Trein.Trein.Locomotief + meerdere Wagons
 - Bevat: meerdere Personeelsleden, meerdere Reizigers
-- Heeft: 1 Reis
+- Heeft: 1 Trein.Reis
 
-**Locomotief**
+**Trein.Trein.Locomotief**
 - Attributen: typeMotor
 
-**Wagon**
+**Trein.Trein.Wagon**
 - Attributen: typeKlasse (enum: BUSINESS, ECONOMIE), capaciteit
 
-**Reis**
+**Trein.Reis**
 - Attributen: vertrekStation, aankomstStation, vertrekTijd, aankomstTijd
-- Relatie: heeft 1 Trein, heeft meerdere Tickets
+- Relatie: heeft 1 Trein.Trein, heeft meerdere Tickets
 
-**Ticket**
+**Persoon.Ticket**
 - Attributen: ticketNummer, prijs
-- Relaties: hoort bij 1 Reiziger, geldig voor 1 Reis
+- Relaties: hoort bij 1 Persoon.Reiziger, geldig voor 1 Trein.Reis
 
 ## 🔗 Relaties tussen klassen
 
 | Relatie | Type | Beschrijving |
 |---------|------|-------------|
-| Reiziger ↔ Ticket | 1:1 | Een reiziger heeft precies één ticket |
-| Personeel → Trein | N:1 | Meerdere personeelsleden werken op één trein |
-| Reiziger → Trein | N:1 | Meerdere reizigers zitten op één trein |
-| Trein ↔ Reis | 1:1 | Een trein heeft één reis |
-| Ticket → Reis | N:1 | Meerdere tickets voor één reis |
-| Trein → Locomotief | 1:1 | Een trein heeft één locomotief (compositie) |
-| Trein → Wagon | 1:N | Een trein heeft meerdere wagons (compositie) |
+| Persoon.Reiziger ↔ Persoon.Ticket | 1:1 | Een reiziger heeft precies één ticket |
+| Persoon.Persoon.Personeel → Trein.Trein | N:1 | Meerdere personeelsleden werken op één trein |
+| Persoon.Reiziger → Trein.Trein | N:1 | Meerdere reizigers zitten op één trein |
+| Trein.Trein ↔ Trein.Reis | 1:1 | Een trein heeft één reis |
+| Persoon.Ticket → Trein.Reis | N:1 | Meerdere tickets voor één reis |
+| Trein.Trein → Trein.Trein.Locomotief | 1:1 | Een trein heeft één locomotief (compositie) |
+| Trein.Trein → Trein.Trein.Wagon | 1:N | Een trein heeft meerdere wagons (compositie) |
 
 ## 📝 Voorbeeldscenario
 
 ```
 SCENARIO: Brussel → Amsterdam
 
-1. Trein aanmaken
-   - Locomotief: Elektrisch
-   - Wagon 1: Business (50 plaatsen)
-   - Wagon 2: Economie (100 plaatsen)
-   - Wagon 3: Economie (100 plaatsen)
+1. Trein.Trein aanmaken
+   - Trein.Trein.Locomotief: Elektrisch
+   - Trein.Trein.Wagon 1: Business (50 plaatsen)
+   - Trein.Trein.Wagon 2: Economie (100 plaatsen)
+   - Trein.Trein.Wagon 3: Economie (100 plaatsen)
 
-2. Reis plannen
+2. Trein.Reis plannen
    - Van: Brussel
    - Naar: Amsterdam
    - Vertrek: 10:00
    - Aankomst: 13:30
 
-3. Personeel toewijzen
+3. Persoon.Persoon.Personeel toewijzen
    - Jan Janssen (Machinist, Certificaat A)
    - Piet Pieters (Conducteur, Certificaat B)
    - Lisa Smits (Service, Certificaat C)
 
 4. Reizigers registreren
-   - Marie Dupont → Ticket T001 (€45.50)
-   - Tom De Vries → Ticket T002 (€45.50)
-   - Anna Bakker → Ticket T003 (€65.00, Business)
+   - Marie Dupont → Persoon.Ticket T001 (€45.50)
+   - Tom De Vries → Persoon.Ticket T002 (€45.50)
+   - Anna Bakker → Persoon.Ticket T003 (€65.00, Business)
 
 5. Boarding lijst genereren
    - Bestand: brussel_amsterdam_boarding.txt
@@ -215,13 +215,13 @@ SCENARIO: Brussel → Amsterdam
 
 TREIN INFORMATIE:
 ─────────────────────────────────────────────────────
-Locomotief: Elektrisch
+Trein.Trein.Locomotief: Elektrisch
 Aantal wagons: 3
 
 WAGONS:
-  Wagon 1: BUSINESS (Capaciteit: 50)
-  Wagon 2: ECONOMIE (Capaciteit: 100)
-  Wagon 3: ECONOMIE (Capaciteit: 100)
+  Trein.Trein.Wagon 1: BUSINESS (Capaciteit: 50)
+  Trein.Trein.Wagon 2: ECONOMIE (Capaciteit: 100)
+  Trein.Trein.Wagon 3: ECONOMIE (Capaciteit: 100)
 
 REIS INFORMATIE:
 ─────────────────────────────────────────────────────
@@ -232,7 +232,7 @@ Aankomst: 13:30
 
 PASSAGIERS:
 ─────────────────────────────────────────────────────
-Nr.   Voornaam             Familienaam          Ticket Nr.      Prijs     
+Nr.   Voornaam             Familienaam          Persoon.Ticket Nr.      Prijs     
 ─────────────────────────────────────────────────────
 1     Marie                Dupont               T001            €45.50    
 2     Tom                  De Vries             T002            €45.50    
@@ -250,9 +250,9 @@ Totaal aantal passagiers: 3
 - **Taal**: Java
 - **Versie**: Compatible met Java 8+
 - **Design patterns**: 
-  - Inheritance (Persoon → Reiziger/Personeel)
-  - Composition (Trein bevat Locomotief en Wagons)
-  - Enum (TypeKlasse voor wagons)
+  - Inheritance (Persoon.Persoon → Persoon.Reiziger/Persoon.Persoon.Personeel)
+  - Composition (Trein.Trein bevat Trein.Trein.Locomotief en Wagons)
+  - Enum (Trein.TypeKlasse voor wagons)
 - **Features**:
   - Bidirectionele relaties (automatische updates)
   - Input validatie

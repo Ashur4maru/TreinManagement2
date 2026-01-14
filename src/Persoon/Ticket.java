@@ -1,5 +1,9 @@
+package Persoon;
+
+import Trein.Reis;
+
 /**
- * De klasse Ticket vertegenwoordigt een vervoersbewijs dat wordt gekoppeld aan een reiziger en een specifieke reis.
+ * De klasse Persoon.Ticket vertegenwoordigt een vervoersbewijs dat wordt gekoppeld aan een reiziger en een specifieke reis.
  * Het bevat informatie zoals het ticketnummer en de prijs.
  */
 
@@ -9,13 +13,13 @@ public class Ticket {
     private double prijs;
 
     /**
-     * Verwijzing naar een Reiziger die gekoppeld is aan dit ticket.
-     * Een Reiziger vertegenwoordigt de persoon die gebruikmaakt van het ticket.
+     * Verwijzing naar een Persoon.Reiziger die gekoppeld is aan dit ticket.
+     * Een Persoon.Reiziger vertegenwoordigt de persoon die gebruikmaakt van het ticket.
      */
     private Reiziger reiziger;
     /**
      * Verwijzing naar een specifieke reis waaraan het ticket gekoppeld is.
-     * Een Reis vertegenwoordigt een treinreis tussen twee stations, inclusief
+     * Een Trein.Reis vertegenwoordigt een treinreis tussen twee stations, inclusief
      * gegevens over vertrek- en aankomststations, tijden, en de lijst met
      * gekoppelde tickets.
      */
@@ -66,6 +70,6 @@ public class Ticket {
 
     @Override
     public String toString() {
-        return "Ticket " + ticketNummer + " (€" + prijs + ")";
+        return "Persoon.Ticket " + ticketNummer + " (€" + prijs + ")";
     }
 }

@@ -1,8 +1,8 @@
-import java.time.LocalDate;
+package Persoon;
 
 /**
  * Deze klasse bevat de gegevens van een persoon.
- * Die later gaat gebruikt zijn als extends voor de klasse Personeel en Reiziger.
+ * Die later gaat gebruikt zijn als extends voor de klasse Persoon.Persoon.Personeel en Persoon.Reiziger.
  */
 public class Persoon {
 

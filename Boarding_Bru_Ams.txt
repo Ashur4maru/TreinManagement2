@@ -4,16 +4,16 @@
 
 TREIN INFORMATIE:
 ─────────────────────────────────────────────────────
-Locomotief: diesel
+Trein.Trein.Locomotief: diesel
 Aantal wagons: 2
 
 WAGONS:
-  Wagon 1: BUSINESS (Capaciteit: 12)
-  Wagon 2: ECONOMIE (Capaciteit: 25)
+  Trein.Trein.Wagon 1: BUSINESS (Capaciteit: 12)
+  Trein.Trein.Wagon 2: ECONOMIE (Capaciteit: 25)
 
 PASSAGIERS:
 ─────────────────────────────────────────────────────
-Nr.   Voornaam             Familienaam          Ticket Nr.      Prijs     
+Nr.   Voornaam             Familienaam          Persoon.Ticket Nr.      Prijs
 ─────────────────────────────────────────────────────
 1     rakim                ben                  1               €15.0     
 

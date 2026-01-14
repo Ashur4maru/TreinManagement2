@@ -1,3 +1,5 @@
+package Trein;
+
 /**
  * Deze klasse bevat de gegevens van een wagon.
  *
@@ -31,6 +33,6 @@ public class Wagon {
 
     @Override
     public String toString() {
-        return "Wagon (" + typeKlasse + ", capaciteit: " + capaciteit + ")";
+        return "Trein.Trein.Wagon (" + typeKlasse + ", capaciteit: " + capaciteit + ")";
     }
 }
